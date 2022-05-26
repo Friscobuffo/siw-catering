@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Admin Home')"> </head>
+<body>
+    <header th:replace="fragments/base.html :: intestazione"></header>
+    <div>
+        <h4 th:text="#{header.menuAdmin}">Admin Home</h4>
+        <div>
+            <a th:href="@{/admin/aggiungiChef}" th:text="#{adminHome.aggiungiChef}">Aggiungi Chef</a>
+        </div>
+    </div>
+    <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+</body>
+</html>
