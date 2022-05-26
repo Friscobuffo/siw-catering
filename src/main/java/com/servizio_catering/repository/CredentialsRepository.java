@@ -1,6 +1,6 @@
 package com.servizio_catering.repository;
 
-import com.servizio_catering.model.Credentials;
+import com.servizio_catering.model.userdata.Credentials;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

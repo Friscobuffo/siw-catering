@@ -1,9 +1,9 @@
-package com.servizio_catering.model;
+package com.servizio_catering.model.userdata;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users") // cambiamo nome perchè in postgres user e' una parola riservata
+@Table(name = "users") //cambiamo nome perchè in postgres user e' una parola riservata
 public class User {
 	
 	@Id
@@ -11,6 +11,7 @@ public class User {
 	private Long id;
 	private String nome;
 	private String cognome;
+	private String email;
 	
 	public Long getId() {
 		return id;
@@ -36,4 +37,11 @@ public class User {
 		this.cognome = cognome;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

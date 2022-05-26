@@ -36,6 +36,13 @@
                 th:errors="${user.cognome}" th:style="'color:red'"></td>
         </tr>
         <tr>
+            <td>Email</td>
+            <td><input type="text" placeholder="email" required
+                       th:field="${user.email}"/></td>
+            <td th:if="${#fields.hasErrors('user.email')}"
+                th:errors="${user.email}" th:style="'color:red'"></td>
+        </tr>
+        <tr>
             <td>
                 <button type="submit">Registra</button>
             </td>

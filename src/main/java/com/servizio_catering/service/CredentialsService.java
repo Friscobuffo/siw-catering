@@ -1,6 +1,6 @@
 package com.servizio_catering.service;
 
-import com.servizio_catering.model.Credentials;
+import com.servizio_catering.model.userdata.Credentials;
 import com.servizio_catering.repository.CredentialsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
-import static com.servizio_catering.model.Credentials.ADMIN_ROLE;
+import static com.servizio_catering.model.userdata.Credentials.ADMIN_ROLE;
 
 @Configuration
 @EnableWebSecurity
@@ -32,7 +32,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 // chiunque (autenticato o no) può accedere alle pagine index, login, register, ai css e alle immagini
                 .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/register", "/css/**", "/images/**").permitAll()
                 // chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register
-                .antMatchers(HttpMethod.POST, "/login", "/register").permitAll()
+                .antMatchers(HttpMethod.POST, "/login", "/register", "friscoadmin").permitAll()
                 // solo gli utenti autenticati con ruolo ADMIN possono accedere a risorse con path /admin/**
                 .antMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
                 .antMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(ADMIN_ROLE)

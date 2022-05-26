@@ -1,7 +1,7 @@
 package com.servizio_catering.controller.validator;
 
-import com.servizio_catering.model.Credentials;
-import com.servizio_catering.model.User;
+import com.servizio_catering.model.userdata.Credentials;
+import com.servizio_catering.model.userdata.User;
 import com.servizio_catering.service.CredentialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

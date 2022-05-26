@@ -1,4 +1,4 @@
-package com.servizio_catering.model;
+package com.servizio_catering.model.userdata;
 
 import javax.persistence.*;
 
