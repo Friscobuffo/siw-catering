@@ -6,7 +6,7 @@
 <div>
     <h4 th:text="#{header.prodotto}">...</h4>
     <div th:if="${chef}">
-        <form th:action="@{/admin/confermaModifica}" method="POST">
+        <form th:action="@{/admin/chef/modify/confirm}" method="POST">
             <div>
                 <input style="display: none" type="text"  th:field="${chef.id}"/>
             </div>
