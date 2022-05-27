@@ -7,5 +7,7 @@ import java.util.Optional;
 
 public interface ChefRepository extends CrudRepository<Chef, Long> {
 
-    Optional<Chef> findByNomeAndCognome(String nome, String cognome);
+    public Optional<Chef> findByNomeAndCognome(String nome, String cognome);
+    public boolean existsByNomeAndCognome(String nome, String cognome);
+    public void deleteById(Long id);
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{pageTitle.prodotto})"> </head>
+<body>
+<header th:replace="fragments/base.html :: intestazione"></header>
+<div>
+    <h4 th:text="#{header.prodotto}">...</h4>
+    <div th:if="${chef}">
+        <form th:action="@{/admin/confermaModifica}" method="POST">
+            <div>
+                <input style="display: none" type="text"  th:field="${chef.id}"/>
+            </div>
+            <div>
+                <span>Nome:</span><span><input type="text" th:field="${chef.nome}"/></span>
+            </div>
+            <div>
+                <span>Cognome:</span><span><input type="text" th:field="${chef.cognome}" /></span>
+            </div>
+            <div>
+                <span>Nazionalita:</span><span><input type="text" th:field="${chef.nazionalita}" /></span>
+            </div>
+            <div>
+                <span><button type="submit">Conferma modifica</button></span>
+            </div>
+        </form>
+    </div>
+    <div th:unless="${chef}">Questo chef non esiste</div>
+</div>
+<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

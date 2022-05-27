@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/base.html :: headerfiles(title=#{pageTitle.prodotto})"> </head>
+<body>
+    <header th:replace="fragments/base.html :: intestazione"></header>
+    <div>
+        <h4 th:text="#{header.prodotto}">...</h4>
+        <div th:if="${chef}" th:object="${chef}">
+            <span th:text="*{nome}">Mario</span>
+            <span th:text="*{cognome}">Rossi</span>
+            <span th:text="*{nazionalita}">Italia</span>
+        </div>
+        <div th:unless="${chef}">Questo chef non esiste</div>
+    </div>
+    <footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

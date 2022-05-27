@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Chef form</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/base.html :: headerfiles(title='Aggiungi chef')"> </head>
 <body>
-
+    <header th:replace="fragments/base.html :: intestazione"></header>
+    <div>
+        <h4 th:text="#{header.registra}">Registrazione</h4>
+        <form th:action="@{/admin/aggiungiChef}" method="POST">
+            <table>
+                <tr>
+                    <td>Nome:</td>
+                    <td><input type="text" placeholder="nome" required
+                               th:field="${chef.nome}"/></td>
+                    <td th:if="${#fields.hasErrors('chef.nome')}"
+                        th:errors="${chef.nome}" th:style="'color:red'"></td>
+                </tr>
+                <tr>
+                    <td>Cognome:</td>
+                    <td><input type="text" placeholder="cognome" required
+                               th:field="${chef.cognome}"/></td>
+                    <td th:if="${#fields.hasErrors('chef.cognome')}"
+                        th:errors="${chef.cognome}" th:style="'color:red'"></td>
+                </tr>
+                <tr>
+                    <td>Nome</td>
+                    <td><input type="text" placeholder="nazionalita" required
+                               th:field="${chef.nazionalita}"/></td>
+                    <td th:if="${#fields.hasErrors('chef.nazionalita')}"
+                        th:errors="${chef.nazionalita}" th:style="'color:red'"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit">Aggiungi Chef</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
 </body>
 </html>

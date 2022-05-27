@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/base.html :: headerfiles(title=#{header.chefs})"> </head>
+<body>
+    <header th:replace="fragments/base.html :: intestazione"></header>
+    <div>
+        <h4 th:text="#{header.chefs}">Lista degli Chefs</h4>
+        <ul>
+            <li th:each="chef : ${chefs}">
+                <a href="chef.html"
+                   th:href="@{'/admin/chef/' + ${chef.id}}"
+                   th:text="${chef.nome} + ' ' + ${chef.cognome}">Mario Rossi
+                </a>
+                <form th:action="@{'/admin/deleteChef/' + ${chef.id}}" method="get">
+                    <button type="submit">Elimina</button>
+                </form>
+                <form th:action="@{'/admin/modifyChef/' + ${chef.id}}" method="get">
+                    <button type="submit">Modifica</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>
