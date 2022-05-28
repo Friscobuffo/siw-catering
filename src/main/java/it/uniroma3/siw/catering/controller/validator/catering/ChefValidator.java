@@ -29,7 +29,7 @@ public class ChefValidator implements Validator {
             errors.rejectValue("nazionalita", "required");
 
         if (chefService.exists(nome, cognome))
-            errors.rejectValue("data", "duplicate");
+            errors.reject("duplicate.chef");
     }
 
     @Override

@@ -6,18 +6,34 @@
 <div>
     <h4 th:text="#{header.prodotto}">...</h4>
     <div th:if="${chef}">
-        <form th:action="@{/admin/chef/modify/confirm}" method="POST">
-            <div>
-                <input style="display: none" type="text"  th:field="${chef.id}"/>
+        <form th:action="@{/admin/chef/modify/confirm}" method="POST" th:object="${chef}">
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
             </div>
             <div>
-                <span>Nome:</span><span><input type="text" th:field="${chef.nome}"/></span>
+                <input style="display: none" type="text"  th:field="*{id}"/>
             </div>
             <div>
-                <span>Cognome:</span><span><input type="text" th:field="${chef.cognome}" /></span>
+                <span>Nome:</span>
+                <span>
+                    <input type="text" th:field="*{nome}" placeholder="nome" required />
+                </span>
+                <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+
             </div>
             <div>
-                <span>Nazionalita:</span><span><input type="text" th:field="${chef.nazionalita}" /></span>
+                <span>Cognome:</span>
+                <span>
+                    <input type="text" th:field="*{cognome}" placeholder="cognome" required />
+                </span>
+                <span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+            </div>
+            <div>
+                <span>Nazionalita:</span>
+                <span>
+                    <input type="text" th:field="*{nazionalita}" placeholder="nazionalita" required />
+                </span>
+                <span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
             </div>
             <div>
                 <span><button type="submit">Conferma modifica</button></span>

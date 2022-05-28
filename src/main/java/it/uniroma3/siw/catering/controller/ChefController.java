@@ -63,12 +63,13 @@ public class ChefController {
     }
 
     @RequestMapping(value = "admin/chef/modify/confirm", method = RequestMethod.POST)
-    public String confirmModify(@ModelAttribute("chef") Chef chef, BindingResult bindingResult, Model model) {
+    public String modifyChef(
+            @ModelAttribute("chef") Chef chef, BindingResult bindingResult, Model model) {
         this.chefValidator.validate(chef, bindingResult);
         if (!bindingResult.hasErrors()) {
             chefService.saveChef(chef);
             return getChefs(model);
         }
-        return "admin/chef/modify/"+chef.getId();
+        return "admin/chef/modify";
     }
 }
