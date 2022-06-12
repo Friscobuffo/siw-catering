@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ChefService {
@@ -22,8 +21,7 @@ public class ChefService {
 
     @Transactional
     public Chef findById(Long id) {
-        Optional<Chef> result = chefRepository.findById(id);
-        return result.orElse(null);
+        return chefRepository.findById(id).orElse(null);
     }
 
     @Transactional
@@ -34,11 +32,6 @@ public class ChefService {
             list.add(chef);
         }
         return list;
-    }
-
-    @Transactional
-    public boolean exists(String nome, String cognome) {
-        return chefRepository.existsByNomeAndCognome(nome, cognome);
     }
 
     @Transactional

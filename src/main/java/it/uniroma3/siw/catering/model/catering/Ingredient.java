@@ -2,22 +2,22 @@ package it.uniroma3.siw.catering.model.catering;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import javax.persistence.*;
-import java.util.LinkedList;
 import java.util.List;
 
 @Entity @Getter @Setter
-public class Chef {
-
+public class Ingredient {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
 
-    private String surname;
-    
-    private String nationality;
+    @Column(length = 2000)
+    private String description;
 
-    @OneToMany(mappedBy = "chef", cascade = CascadeType.ALL)
-    private List<Buffet> buffets;
+    private String origin;
+
+    @ManyToMany(mappedBy = "ingredients")
+    private List<Dish> dishes;
 }

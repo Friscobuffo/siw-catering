@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.buffet.data})"> </head>
+<body>
+<header th:replace="fragments/base.html :: intestazione"></header>
+<div>
+    <h4 th:text="#{header.buffet.data}">...</h4>
+    <div th:if="${buffet}" th:object="${buffet}">
+        <span th:text="*{name}">Buffet May 1</span>
+        <span th:text="*{description}">Buffet with Fish</span>
+    </div>
+    <div th:unless="${buffet}">This buffet does not exits</div>
+</div>
+<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

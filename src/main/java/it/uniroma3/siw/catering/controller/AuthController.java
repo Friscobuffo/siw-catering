@@ -1,7 +1,7 @@
 package it.uniroma3.siw.catering.controller;
 
-import it.uniroma3.siw.catering.controller.validator.userdata.CredentialsValidator;
-import it.uniroma3.siw.catering.controller.validator.userdata.UserValidator;
+import it.uniroma3.siw.catering.controller.validator.CredentialsValidator;
+import it.uniroma3.siw.catering.controller.validator.UserValidator;
 import it.uniroma3.siw.catering.model.userdata.Credentials;
 import it.uniroma3.siw.catering.model.userdata.GoogleUser;
 import it.uniroma3.siw.catering.model.userdata.User;

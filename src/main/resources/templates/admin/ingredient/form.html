@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments/base.html :: headerfiles(title=#{title.chef.form})"> </head>
+    <head th:replace="fragments/base.html :: headerfiles(title=#{title.ingredient.form})"> </head>
     <body>
         <header th:replace="fragments/base.html :: intestazione"></header>
         <div>
-            <h4 th:text="#{header.chef.add}">Registrazione</h4>
-            <form th:action="@{/admin/chef/add}" method="POST" th:object="${chef}">
+            <h4 th:text="#{header.ingredient.add}">Add an ingredient</h4>
+            <form th:action="@{/admin/ingredient/add}" method="POST" th:object="${ingredient}">
                 <div>
                     <span>Nome:
                         <input type="text" th:field="*{name}" placeholder="name" required />
                     </span>
                 </div>
                 <div>
-                    <span>Cognome:
-                        <input type="text" th:field="*{surname}" placeholder="surname" required />
+                    <span>descrizione:
+                        <textarea placeholder="description" rows="5" cols="80" th:field="*{description}" required></textarea>
                     </span>
                 </div>
                 <div>
-                    <span>Nazionalita:
-                        <input type="text" th:field="*{nationality}" placeholder="nationality" required />
+                    <span>Origine:
+                        <input type="text" th:field="*{origin}" placeholder="origin" required />
                     </span>
                 </div>
                 <div>
-                    <span><button type="submit">Conferma modifica</button></span>
+                    <span><button type="submit">Aggiungi ingrediente</button></span>
                 </div>
             </form>
         </div>

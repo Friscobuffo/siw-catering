@@ -1,4 +1,4 @@
-package it.uniroma3.siw.catering.controller.validator.userdata;
+package it.uniroma3.siw.catering.controller.validator;
 
 import it.uniroma3.siw.catering.model.userdata.User;
 import it.uniroma3.siw.catering.service.userdata.UserService;
@@ -23,19 +23,19 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         User user = (User) o;
-        String nome = user.getNome().trim();
-        String cognome = user.getCognome().trim();
+        String name = user.getName().trim();
+        String surname = user.getSurname().trim();
         String email = user.getEmail().trim();
 
-        if (nome.isEmpty())
-            errors.rejectValue("nome", "required");
-        else if (nome.length() < MIN_NAME_LENGTH || nome.length() > MAX_NAME_LENGTH)
-            errors.rejectValue("nome", "size");
+        if (name.isEmpty())
+            errors.rejectValue("name", "required");
+        else if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH)
+            errors.rejectValue("name", "size");
 
-        if (cognome.isEmpty())
-            errors.rejectValue("cognome", "required");
-        else if (cognome.length() < MIN_NAME_LENGTH || cognome.length() > MAX_NAME_LENGTH)
-            errors.rejectValue("cognome", "size");
+        if (surname.isEmpty())
+            errors.rejectValue("surname", "required");
+        else if (surname.length() < MIN_NAME_LENGTH || surname.length() > MAX_NAME_LENGTH)
+            errors.rejectValue("surname", "size");
 
         if (email.isEmpty()) {
             errors.rejectValue("email", "required");
@@ -53,8 +53,9 @@ public class UserValidator implements Validator {
     }
 
     private boolean isEmailValid(String email) {
-        String regexPattern = "^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@"
-                + "[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.[\\p{L}]{2,})$";
+        String regexPattern =
+                "^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@" +
+                "[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.[\\p{L}]{2,})$";
         return Pattern.compile(regexPattern).matcher(email).matches();
     }
 }

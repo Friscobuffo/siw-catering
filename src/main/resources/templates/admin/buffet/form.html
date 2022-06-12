@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/base.html :: headerfiles(title=#{title.chef.form})"> </head>
+    <body>
+        <header th:replace="fragments/base.html :: intestazione"></header>
+        <div>
+            <h4 th:text="#{header.buffet.form}">Buffet form</h4>
+            <form th:action="@{/admin/buffet/add}" method="POST" th:object="${buffet}">
+                <div th:if="${#fields.hasGlobalErrors()}">
+                    <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+                </div>
+                <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{chef}"/>
+                <div>
+                    <span th:text="#{buffet.name}">Name:</span>
+                    <span>
+                        <input type="text" th:field="*{name}" placeholder="name" required />
+                    </span>
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                </div>
+                <div>
+                    <span th:text="#{buffet.description}">Description:</span>
+                    <span>
+                        <textarea placeholder="description" rows="5" cols="80" th:field="*{description}" required></textarea>
+                    </span>
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+                </div>
+                <div>
+                    <span><button type="submit">Conferma aggiunta</button></span>
+                </div>
+            </form>
+        </div>
+        <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+    </body>
+</html>

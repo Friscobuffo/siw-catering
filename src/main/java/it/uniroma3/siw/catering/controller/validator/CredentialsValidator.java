@@ -1,4 +1,4 @@
-package it.uniroma3.siw.catering.controller.validator.userdata;
+package it.uniroma3.siw.catering.controller.validator;
 
 import it.uniroma3.siw.catering.model.userdata.Credentials;
 import it.uniroma3.siw.catering.model.userdata.User;

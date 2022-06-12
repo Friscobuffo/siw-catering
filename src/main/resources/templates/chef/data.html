@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/base.html :: headerfiles(title=#{title.chef.data})"> </head>
+<body>
+    <header th:replace="fragments/base.html :: intestazione"></header>
+    <div>
+        <h4 th:text="#{header.chef.data}">...</h4>
+        <div th:if="${chef}" th:object="${chef}">
+            <span th:text="*{name}">Mario</span>
+            <span th:text="*{surname}">Rossi</span>
+            <span th:text="*{nationality}">Italia</span>
+        </div>
+        <div>
+            <h4 th:text="#{header.chef.buffets}">Buffet list</h4>
+            <ul>
+                <li th:each="buffet : ${buffets}">
+                    <div th:text="${buffet.name}">Buffet name</div>
+                </li>
+            </ul>
+        </div>
+        <div th:unless="${chef}" th:text="#{chef.not-exists}">non existent</div>
+    </div>
+    <footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

@@ -2,11 +2,12 @@ package it.uniroma3.siw.catering.model.catering;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity @Getter @Setter
-public class Buffet {
+public class Dish {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -16,9 +17,17 @@ public class Buffet {
     @Column(length = 2000)
     private String description;
 
-    @OneToMany(mappedBy = "buffet", cascade = CascadeType.ALL)
-    private List<Dish> dishes;
-
     @ManyToOne
-    private Chef chef;
+    private Buffet buffet;
+
+    @ManyToMany
+    private List<Ingredient> ingredients;
+
+    public void addIngredient(Ingredient ingredient) {
+        this.ingredients.add(ingredient);
+    }
+
+    public boolean removeIngredient(Ingredient ingredient) {
+        return this.ingredients.remove(ingredient);
+    }
 }

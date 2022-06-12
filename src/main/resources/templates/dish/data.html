@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.dish.data})"> </head>
+<body>
+<header th:replace="fragments/base.html :: intestazione"></header>
+<div>
+    <h4 th:text="#{header.dish.data}">...</h4>
+    <div th:if="${dish}" th:object="${dish}">
+        <span th:text="*{name}">Carbonara</span>
+        <span th:text="*{description}">Piatto preferito di Giordano</span>
+    </div>
+    <div th:unless="${dish}">Non esiste questo piatto</div>
+</div>
+<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

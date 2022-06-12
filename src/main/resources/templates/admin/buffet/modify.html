@@ -4,52 +4,49 @@
 <body>
 <header th:replace="fragments/base.html :: intestazione"></header>
 <div>
-    <h4 th:text="#{header.chef.modify}">Modify the Chef</h4>
-    <div th:if="${chef}">
-        <form th:action="@{/admin/chef/modify/confirm}" method="POST" th:object="${chef}">
+    <h4 th:text="#{header.buffet.modify}">Modify buffet</h4>
+    <div th:if="${buffet}">
+        <form th:action="@{/admin/buffet/modify/confirm}" method="POST" th:object="${buffet}">
             <div th:if="${#fields.hasGlobalErrors()}">
                 <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
             </div>
             <input type="hidden"  th:field="*{id}"/>
+            <input type="hidden"  th:field="*{chef}"/>
             <div>
                 <span>Nome:</span>
                 <span>
                     <input type="text" th:field="*{name}" placeholder="name" required />
                 </span>
                 <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-
             </div>
             <div>
-                <span>Cognome:</span>
-                <span>
-                    <input type="text" th:field="*{surname}" placeholder="surname" required />
+                <span>descrizione:
+                    <textarea placeholder="description" rows="5" cols="80" th:field="*{description}" required></textarea>
                 </span>
-                <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
-            </div>
-            <div>
-                <span>Nazionalita:</span>
-                <span>
-                    <input type="text" th:field="*{nationality}" placeholder="nationality" required />
-                </span>
-                <span th:if="${#fields.hasErrors('nationality')}" th:errors="*{nationality}"></span>
+                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
             </div>
             <div>
                 <span><button type="submit" th:text="#{modify.confirm}">Confirm</button></span>
             </div>
+
+            <h4 th:text="#{header.dishes.modify}">Modify dish</h4>
         </form>
-        <h4 th:text="#{header.buffets.modify}">Modify buffet</h4>
+        <form th:action="@{'/admin/buffet/' + ${buffet.id} + '/add-dish'}" method="get">
+            <button type="submit">Aggiungi piatto</button>
+        </form>
+
         <div>
             <ul>
-                <li th:each="buffet : ${buffets}">
+                <li th:each="dish : ${dishes}">
                     <a
-                            th:href="@{'/admin/buffet/modify/' + ${buffet.id}}"
-                            th:text="${buffet.name}">Fish buffet
+                            th:href="@{'/admin/dish/modify/' + ${dish.id}}"
+                            th:text="${dish.name}">Carbonara
                     </a>
                 </li>
             </ul>
         </div>
     </div>
-    <div th:unless="${chef}">Questo chef non esiste</div>
+    <div th:unless="${buffet}">Questo buffet non esiste</div>
 </div>
 <footer th:replace="fragments/base.html :: fondo('/default')"></footer>
 </body>

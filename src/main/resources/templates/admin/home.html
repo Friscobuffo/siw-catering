@@ -6,10 +6,13 @@
         <div>
             <h4 th:text="#{header.menuAdmin}">Admin Home</h4>
             <div>
-                <a th:href="@{/admin/chef/add}" th:text="#{adminHome.aggiungiChef}">Add Chef</a>
+                <a th:href="@{/admin/chef/add}" th:text="#{chef.add}">Add Chef</a>
             </div>
             <div>
-                <a th:href="@{/admin/chef/list}" th:text="#{adminHome.elencoChefs}">Chef List</a>
+                <a th:href="@{/admin/chef/list}" th:text="#{chef.list}">Chef List</a>
+            </div>
+            <div>
+                <a th:href="@{/admin/ingredient/add}" th:text="#{ingredient.add}">Add ingredient</a>
             </div>
         </div>
         <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>

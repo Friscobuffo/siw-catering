@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments/base.html :: headerfiles(title=#{header.chefs})"> </head>
+    <head th:replace="fragments/base.html :: headerfiles(title=#{title.chef.list})"> </head>
 <body>
     <header th:replace="fragments/base.html :: intestazione"></header>
     <div>
-        <h4 th:text="#{header.chefs}">Lista degli Chefs</h4>
+        <h4 th:text="#{header.chef.list}">Lista degli Chefs</h4>
         <ul>
             <li th:each="chef : ${chefs}">
-                <a
-                   th:href="@{'/admin/chef/data/' + ${chef.id}}"
-                   th:text="${chef.nome} + ' ' + ${chef.cognome}">Mario Rossi
-                </a>
+                <span th:text="${chef.name} + ' ' + ${chef.surname}">Mario Rossi</span>
                 <form th:action="@{'/admin/chef/delete/' + ${chef.id}}" method="get">
-                    <button type="submit">Elimina</button>
+                    <button type="submit">elimina</button>
                 </form>
                 <form th:action="@{'/admin/chef/modify/' + ${chef.id}}" method="get">
                     <button type="submit">Modifica</button>
+                </form>
+                <form th:action="@{'/admin/chef/' + ${chef.id} + '/add-buffet'}" method="get">
+                    <button type="submit">aggiungi buffet</button>
                 </form>
             </li>
         </ul>
