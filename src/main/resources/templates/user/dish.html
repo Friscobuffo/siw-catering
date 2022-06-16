@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=${dish.getName()}, css='/css/form-list.css')"></head>
+<body>
+<header th:replace="fragments/base.html :: header(#{dish})"></header>
+<div class="flex-container">
+    <div class="form" th:object="${dish}">
+        <div class="form-element">
+            <div class="form-span">Nome:</div>
+            <div class="larger" th:text="*{name}"></div>
+        </div>
+        <div class="form-element">
+            <div class="form-span" th:text="#{description}">description:</div>
+            <div class="larger" th:text="*{description}"></div>
+        </div>
+    </div>
+    <div class="list">
+        <h4 th:text="#{ingredients}">Dishes</h4>
+        <div class="list-element vertical" th:each="ingredient : ${dish.getIngredients()}">
+            <div class="name auto-width" th:text="${ingredient.name}">Pane</div>
+            <a class="button" th:href="@{'/ingredient/' + ${ingredient.id}}" th:text="#{explore}">explore</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

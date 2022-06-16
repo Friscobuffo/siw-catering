@@ -1,56 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title=#{title.chef.modify})"> </head>
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.buffet.modify}, css='/css/form-list.css')"></head>
 <body>
-<header th:replace="fragments/base.html :: intestazione"></header>
-<div>
-    <h4 th:text="#{header.dish.modify}">Modify the Dish</h4>
-    <div th:if="${dish}">
-        <form th:action="@{/admin/dish/modify/confirm}" method="POST" th:object="${dish}">
-            <div th:if="${#fields.hasGlobalErrors()}">
-                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-            </div>
+<header th:replace="fragments/base.html :: header(#{header.dish.modify})"></header>
+<div class="flex-container" th:if="${dish}">
+    <div class="form-wrapper">
+        <form class="form" th:action="@{/admin/dish/modify/confirm}" method="POST" th:object="${dish}">
             <input type="hidden"  th:field="*{id}"/>
             <input type="hidden"  th:field="*{buffet}"/>
-            <div>
-                <span>Nome:</span>
-                <span>
-                    <input type="text" th:field="*{name}" placeholder="name" required />
-                </span>
-                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-
+            <div class="form-element">
+                <div class="form-span">Nome:</div>
+                <input spellcheck="false" class="form-input larger" type="text" th:field="*{name}" placeholder="name" required />
             </div>
-            <div>
-                <span>Descrizione:</span>
-                <span>
-                    <textarea placeholder="description" rows="5" cols="80" th:field="*{description}" required></textarea>
-                </span>
-                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+            <div class="form-element">
+                <div class="form-span">Descrizione:</div>
+                <textarea spellcheck="false" class="form-input larger higher" placeholder="description" rows="3" th:field="*{description}" required></textarea>
             </div>
-            <div>
-                <span><button type="submit" th:text="#{modify.confirm}">Confirm</button></span>
+            <div class="flex horizontal">
+                <a class="button auto-margin" th:href="@{'/admin/dish/' + ${dish.id} + '/add-ingredient'}" th:text="#{dish.add-ingredient}">add</a>
+                <button class="button2"  type="submit" th:text="#{modify.confirm}">Confirm</button>
             </div>
         </form>
+    </div>
+    <div class="list">
         <h4 th:text="#{header.ingredients}">Ingredients</h4>
-        <div>
-            <form th:action="@{'/admin/dish/' + ${dish.id} + '/add-ingredient'}" method="get">
-                <button type="submit">aggiungi ingrediente</button>
-            </form>
-            <ul>
-                <li th:each="ingredient : ${dish.getIngredients()}">
-                    <a
-                            th:href="@{'/admin/ingredient/modify/' + ${ingredient.id}}"
-                            th:text="${ingredient.name}">Fish buffet
-                    </a>
-                    <form th:action="@{'/admin/dish/' + ${dish.id} + '/remove-ingredient/' + ${ingredient.id}}" method="post">
-                        <button type="submit">rimuovi</button>
-                    </form>
-                </li>
-            </ul>
+        <div class="list-element vertical" th:each="ingredient : ${dish.getIngredients()}">
+            <div class="name auto-width" th:text="${ingredient.name}">Pane</div>
+            <div class="flex horizontal">
+                <a class="button" th:href="@{'/admin/ingredient/' + ${ingredient.id} + '/modify'}" th:text="#{modify}">modify</a>
+                <a class="button" th:href="@{'/admin/ingredient/' + ${ingredient.id} + '/delete'}" th:text="#{delete}">delete</a>
+                <a class="button" th:href="@{'/admin/dish/' + ${dish.id} + '/remove-ingredient/' + ${ingredient.id}}" th:text="#{remove}">remove</a>
+            </div>
         </div>
     </div>
-    <div th:unless="${dish}">Questo piatto non esiste</div>
 </div>
-<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+<div th:unless="${dish}">Questo piatto non esiste</div>
 </body>
 </html>

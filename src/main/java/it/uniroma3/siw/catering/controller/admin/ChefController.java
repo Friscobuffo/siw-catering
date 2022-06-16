@@ -1,4 +1,4 @@
-package it.uniroma3.siw.catering.controller;
+package it.uniroma3.siw.catering.controller.admin;
 
 import it.uniroma3.siw.catering.model.catering.Buffet;
 import it.uniroma3.siw.catering.model.catering.Chef;
@@ -6,7 +6,6 @@ import it.uniroma3.siw.catering.service.catering.ChefService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,10 +30,9 @@ public class ChefController {
     }
 
     @RequestMapping(value = { "add" }, method = RequestMethod.POST)
-    public String registerUser(@ModelAttribute("chef") Chef chef, Model model) {
+    public String addChef(@ModelAttribute("chef") Chef chef, Model model) {
         chefService.saveChef(chef);
-        model.addAttribute("chef", chef);
-        return "admin/chef/added";
+        return getChefs(model);
     }
 
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
@@ -46,9 +44,7 @@ public class ChefController {
     @RequestMapping(value = "modify/{id}", method = RequestMethod.GET)
     public String modifyChef(@PathVariable("id") Long id, Model model) {
         Chef chef = chefService.findById(id);
-        List<Buffet> buffets = chef.getBuffets();
         model.addAttribute("chef", chef);
-        model.addAttribute("buffets", buffets);
         return "admin/chef/modify";
     }
 

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="fragments/base.html :: headerfiles(title='Catering')"></head>
-	<body>
-		<header th:replace="fragments/base.html :: intestazione"></header>
-		<div>
-			<h4 th:text="#{header.index}">Welcome Page</h4>
-			<div>
-				<a th:href="@{/login}" th:text="#{index.login}">Login</a>
-			</div>
-			<div>
-				<a th:href="@{/user/register}" th:text="#{index.register}">Register</a>
-			</div>
-		</div>
-		<footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
-	</body>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<link href="css/index.css" rel="stylesheet">
+	<title>Catering</title>
+</head>
+<body>
+<div class="container">
+	<div class="element">
+		<form th:action="@{/default}" method="get">
+			<button type="submit" th:text="#{index.discover}">Discover out catering</button>
+		</form>
+	</div>
+</div>
+
+</body>
 </html>

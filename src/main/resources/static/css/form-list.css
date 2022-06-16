@@ -1,0 +1,90 @@
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.form {
+    max-height: 12rem;
+    justify-content: space-around;
+    border: 0.1rem solid #5b0eeb;
+    padding: 0.6rem 0.6rem 0.3rem;
+    border-radius: 0.3rem;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-element {
+    align-items: center;
+    display: flex;
+    margin-bottom: 0.3rem;
+}
+
+.form-span {
+    width: 7rem;
+    font-weight: 500;
+}
+
+.higher { height: 3rem; }
+
+.larger { width: 11rem; }
+
+.form-textarea {
+    margin-left: 1rem;
+    width: 14rem;
+    height: auto;
+}
+
+.button2 {
+    margin: .4rem auto .3rem;
+    font-size: 0.7rem;
+    width: auto;
+    height: 1.6rem;
+}
+
+.list-element {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.name {
+    justify-content: center;
+    width: 12rem;
+}
+
+@media screen and (max-width: 34rem) {
+    html { font-size: 18px; }
+
+    .flex-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .list { padding-top: 0.5rem; }
+}
+
+/* UTILS */
+.auto-width { width: auto; }
+
+.auto-margin { margin: auto; }
+
+.space-around { justify-content: space-around; }
+
+.vertical { flex-direction: column; }
+
+.flex { display: flex; }
+
+.horizontal { flex-direction: row; }
+
+.no-border { border: none }
+
+.margin1 { margin: 1rem }
+
+.align-items-center { align-items: center }
+
+.justify-center { justify-content: center }
+
+.wide15 { width: 15rem }
+
+.space-between { justify-content: space-between }

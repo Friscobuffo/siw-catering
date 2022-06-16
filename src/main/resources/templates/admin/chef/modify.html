@@ -1,56 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title=#{title.chef.modify})"> </head>
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.chef.modify}, css='/css/form-list.css')"></head>
 <body>
-<header th:replace="fragments/base.html :: intestazione"></header>
-<div>
-    <h4 th:text="#{header.chef.modify}">Modify the Chef</h4>
-    <div th:if="${chef}">
-        <form th:action="@{/admin/chef/modify/confirm}" method="POST" th:object="${chef}">
-            <div th:if="${#fields.hasGlobalErrors()}">
-                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-            </div>
-            <input type="hidden"  th:field="*{id}"/>
-            <div>
-                <span>Nome:</span>
-                <span>
-                    <input type="text" th:field="*{name}" placeholder="name" required />
-                </span>
-                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-
-            </div>
-            <div>
-                <span>Cognome:</span>
-                <span>
-                    <input type="text" th:field="*{surname}" placeholder="surname" required />
-                </span>
-                <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
-            </div>
-            <div>
-                <span>Nazionalita:</span>
-                <span>
-                    <input type="text" th:field="*{nationality}" placeholder="nationality" required />
-                </span>
-                <span th:if="${#fields.hasErrors('nationality')}" th:errors="*{nationality}"></span>
-            </div>
-            <div>
-                <span><button type="submit" th:text="#{modify.confirm}">Confirm</button></span>
-            </div>
-        </form>
-        <h4 th:text="#{header.buffets.modify}">Modify buffet</h4>
+<header th:replace="fragments/base.html :: header(#{header.chef.editor})"></header>
+<div class="flex-container" th:if="${chef}">
+    <form class="form" th:action="@{/admin/chef/modify/confirm}" method="POST" th:object="${chef}">
+        <input type="hidden"  th:field="*{id}"/>
+        <div class="form-element">
+            <div class="form-span" th:text="#{chef.name}">Name:</div>
+            <input class="form-input" spellcheck="false" type="text" th:field="*{name}" required />
+        </div>
+        <div class="form-element">
+            <div class="form-span" th:text="#{chef.surname}">Surname:</div>
+            <input class="form-input" spellcheck="false" type="text" th:field="*{surname}" required />
+        </div>
+        <div class="form-element">
+            <div class="form-span" th:text="#{chef.nationality}">Nationality:</div>
+            <input class="form-input" spellcheck="false" type="text" th:field="*{nationality}" required />
+        </div>
         <div>
-            <ul>
-                <li th:each="buffet : ${buffets}">
-                    <a
-                            th:href="@{'/admin/buffet/modify/' + ${buffet.id}}"
-                            th:text="${buffet.name}">Fish buffet
-                    </a>
-                </li>
-            </ul>
+            <button class="button2" type="submit" th:text="#{modify.confirm}">Confirm</button>
+        </div>
+    </form>
+    <div class="list">
+        <h4 th:text="#{header.buffets.modify}">Modify buffet</h4>
+        <div class="list-element vertical" th:each="buffet : ${chef.getBuffets()}">
+            <div class="name auto-width" th:text="${buffet.name}">Fish buffet</div>
+            <div class="flex horizontal">
+                <a class="button" th:href="@{'/admin/buffet/modify/' + ${buffet.id}}" th:text="#{modify}">modifica</a>
+                <a class="button" th:href="@{'/admin/buffet/delete/' + ${buffet.id}}" th:text="#{delete}">elimina</a>
+            </div>
         </div>
     </div>
-    <div th:unless="${chef}">Questo chef non esiste</div>
 </div>
-<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+<div th:unless="${chef}">Questo chef non esiste</div>
 </body>
 </html>

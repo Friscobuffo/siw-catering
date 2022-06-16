@@ -1,0 +1,54 @@
+body{
+    height: 100vh;
+    display:flex;
+    background: azure;
+}
+
+.container{
+    position: relative;
+    min-width: 200px;
+    width:60vw;
+    aspect-ratio: 2;
+    border: 3px solid steelblue;
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.element{
+    position:absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    margin: auto;
+    width: 50vw;
+    aspect-ratio: 2;
+    background: no-repeat url(../images/catering2.jpg);
+    background-size: 100% 100%;
+    border-radius: 5px;
+}
+
+button {
+    position: relative;
+    margin: auto;
+    cursor: pointer;
+    background: linear-gradient(to right, rgb(26, 188, 244), rgb(93, 239, 184));
+    appearance: none;
+    height: 50px;
+    width: 140px;
+    transition: background 0.5s linear;
+    background-clip: padding-box;
+    border: 0.5rem solid transparent;
+    color: white;
+    font-size: 10px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+button:hover {
+    background: linear-gradient(to right, rgb(13, 164, 217), rgb(71, 181, 139));
+    background-clip: padding-box;
+}
+
+button:active {
+    background: linear-gradient(to right, rgb(9, 119, 158), rgb(45, 115, 88));
+    background-clip: padding-box;
+}

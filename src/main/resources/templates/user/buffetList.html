@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/base.html :: headerfiles(title=#{title.buffet.list}, css='/css/form-list.css')"></head>
+<body>
+<header th:replace="fragments/base.html :: header(#{header.buffet.list})"></header>
+<div class="list-element horizontal" th:each="buffet : ${buffets}">
+  <div class="name" th:text="${buffet.name}">Buffet number 1</div>
+  <a class="button" th:href="@{'/buffet/' + ${buffet.id}}" th:text="#{explore}">Explore</a>
+</div>
+</body>
+</html>

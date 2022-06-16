@@ -34,18 +34,17 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String showLoginForm (Model model) {
+    public String showLoginForm () {
         return "loginForm";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(Model model) {
+    public String logout() {
         return "index";
     }
 
     @RequestMapping(value = "/default", method = RequestMethod.GET)
-    public String defaultAfterLogin(Model model) {
-
+    public String defaultAfterLogin() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
         if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
@@ -78,8 +77,7 @@ public class AuthController {
     @RequestMapping(value = { "/user/register" }, method = RequestMethod.POST)
     public String registerUser(
             @ModelAttribute("user") User user, BindingResult userBindingResult,
-            @ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult,
-            Model model) {
+            @ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult) {
 
         this.userValidator.validate(user, userBindingResult);
         this.credentialsValidator.validate(credentials, credentialsBindingResult);

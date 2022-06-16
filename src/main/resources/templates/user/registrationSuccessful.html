@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title=#{title.user.registered})"> </head>
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.user.registered}, css='css/form-list.css')"> </head>
 <body>
-	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div>
-    	<h4 th:text="#{header.registration}">Registration</h4>
-		<h1 th:text="#{user.registered}">Congratulation, you are registered</h1>
+		<h1 class="auto-margin" th:text="#{user.registered}">Congratulation, you are registered</h1>
 	</div>
-    <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
 </body>
 </html>

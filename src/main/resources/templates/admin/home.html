@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments/base.html :: headerfiles(title='Admin Home')"> </head>
-    <body>
-        <header th:replace="fragments/base.html :: intestazione"></header>
-        <div>
-            <h4 th:text="#{header.menuAdmin}">Admin Home</h4>
-            <div>
-                <a th:href="@{/admin/chef/add}" th:text="#{chef.add}">Add Chef</a>
-            </div>
-            <div>
-                <a th:href="@{/admin/chef/list}" th:text="#{chef.list}">Chef List</a>
-            </div>
-            <div>
-                <a th:href="@{/admin/ingredient/add}" th:text="#{ingredient.add}">Add ingredient</a>
-            </div>
-        </div>
-        <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
-    </body>
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.admin.home}, css='/css/home.css')"></head>
+<body>
+<header th:replace="fragments/base.html :: header(#{header.admin.menu})"></header>
+<div class="cards">
+    <div class="card">
+        <ion-icon class="card-image" name="happy-outline"></ion-icon>
+        <a class="button" th:href="@{/admin/chef/list}" th:text="#{chef.list}">Chef List</a>
+        <a class="button" th:href="@{/admin/chef/add}" th:text="#{chef.add}">Add Chef</a>
+    </div>
+    <div class="card">
+        <ion-icon class="card-image" name="fish-outline"></ion-icon>
+        <a class="button" th:href="@{/admin/ingredient/list}" th:text="#{ingredient.list}">Ingredient List</a>
+        <a class="button" th:href="@{/admin/ingredient/add}" th:text="#{ingredient.add}">Add ingredient</a>
+    </div>
+</div>
+</body>
 </html>

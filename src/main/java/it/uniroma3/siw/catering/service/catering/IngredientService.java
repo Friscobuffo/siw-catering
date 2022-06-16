@@ -1,6 +1,5 @@
 package it.uniroma3.siw.catering.service.catering;
 
-import it.uniroma3.siw.catering.model.catering.Dish;
 import it.uniroma3.siw.catering.model.catering.Ingredient;
 import it.uniroma3.siw.catering.repository.catering.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,4 +33,20 @@ public class IngredientService {
         }
         return list;
     }
+
+    @Transactional
+    public List<Ingredient> findAll() {
+        List<Ingredient> list = new ArrayList<>();
+        Iterable<Ingredient> temp = ingredientRepository.findAll();
+        for (Ingredient ingredient : temp) {
+            list.add(ingredient);
+        }
+        return list;
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        ingredientRepository.deleteById(id);
+    }
+
 }

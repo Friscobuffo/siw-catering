@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments/base.html :: headerfiles(title=#{title.ingredient.form})"> </head>
-    <body>
-        <header th:replace="fragments/base.html :: intestazione"></header>
-        <div>
-            <h4 th:text="#{header.ingredient.add}">Add an ingredient</h4>
-            <form th:action="@{/admin/ingredient/add}" method="POST" th:object="${ingredient}">
-                <div>
-                    <span>Nome:
-                        <input type="text" th:field="*{name}" placeholder="name" required />
-                    </span>
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.ingredient.form}, css='/css/form-list.css')"></head>
+<body>
+<header th:replace="fragments/base.html :: header(#{header.ingredient.add})"></header>
+<div class="flex-container">
+    <form class="form" th:action="@{/admin/ingredient/add}" method="POST" th:object="${ingredient}">
+        <div class="form-wrapper">
+            <div class="flex space-between">
+                <div class="form-element">
+                    <input class="form-input" type="text" th:field="*{name}" placeholder="name" required />
                 </div>
-                <div>
-                    <span>descrizione:
-                        <textarea placeholder="description" rows="5" cols="80" th:field="*{description}" required></textarea>
-                    </span>
+                <div class="form-element">
+                    <input class="form-input" type="text" th:field="*{origin}" placeholder="origin" required />
                 </div>
-                <div>
-                    <span>Origine:
-                        <input type="text" th:field="*{origin}" placeholder="origin" required />
-                    </span>
-                </div>
-                <div>
-                    <span><button type="submit">Aggiungi ingrediente</button></span>
-                </div>
-            </form>
+            </div>
+            <div class="form-element">
+                <textarea class="form-input higher wide15" placeholder="description" rows="3" th:field="*{description}" required></textarea>
+            </div>
         </div>
-        <footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>
-    </body>
+        <div>
+            <button class="button2" type="submit">Aggiungi ingrediente</button>
+        </div>
+    </form>
+</div>
+</body>
 </html>

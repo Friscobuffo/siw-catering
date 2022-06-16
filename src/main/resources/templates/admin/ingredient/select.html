@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title=#{title.chef.list})"> </head>
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.ingredient.select}, css='/css/form-list.css')"></head>
 <body>
-<header th:replace="fragments/base.html :: intestazione"></header>
-<div>
-    <h4 th:text="#{header.chef.list}">risultato</h4>
-    <ul>
-        <li th:each="ingredient : ${results}">
-            <span th:text="${ingredient.name}">Mozzarella</span>
-            <form th:action="@{'/admin/dish/' + ${si.getIdDish()} + '/add-ingredient/' + ${ingredient.getId()}}" method="post">
-                <button type="submit">aggiungi</button>
-            </form>
-        </li>
-    </ul>
+<header th:replace="fragments/base.html :: header(#{header.ingredient.select})"></header>
+<div class="list" th:each="ingredient : ${results}">
+    <div class="list-element justify-center">
+        <span th:text="${ingredient.name}">Mozzarella</span>
+        <a class="button2 margin1" th:href="@{'/admin/dish/' + ${si.getIdDish()} + '/add-ingredient/' + ${ingredient.getId()}}">add</a>
+    </div>
 </div>
-<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
 </body>
 </html>

@@ -1,6 +1,7 @@
-package it.uniroma3.siw.catering.controller;
+package it.uniroma3.siw.catering.controller.admin;
 
 import it.uniroma3.siw.catering.model.SearchIngredient;
+import it.uniroma3.siw.catering.model.catering.Buffet;
 import it.uniroma3.siw.catering.model.catering.Dish;
 import it.uniroma3.siw.catering.model.catering.Ingredient;
 import it.uniroma3.siw.catering.service.catering.DishService;
@@ -22,7 +23,7 @@ public class DishController {
     @Autowired
     private IngredientService ingredientService;
 
-    @RequestMapping(value = "modify/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}/modify", method = RequestMethod.GET)
     public String editBuffet(Model model, @PathVariable("id") Long id) {
         Dish dish = dishService.findById(id);
         model.addAttribute("dish", dish);
@@ -30,15 +31,18 @@ public class DishController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String addDish(@ModelAttribute("dish") Dish dish) {
+    public String addDish(@ModelAttribute("dish") Dish dish, Model model) {
         dishService.saveDish(dish);
-        return "admin/home";
+        model.addAttribute("buffet", dish.getBuffet());
+        return "admin/buffet/modify";
     }
 
     @RequestMapping(value = "modify/confirm", method = RequestMethod.POST)
-    public String modifyDish(@ModelAttribute("buffet") Dish dish) {
+    public String modifyDish(@ModelAttribute("buffet") Dish dish, Model model) {
         dishService.saveDish(dish);
-        return "admin/home";
+        Buffet buffet = dish.getBuffet();
+        model.addAttribute("buffet", buffet);
+        return "admin/buffet/modify";
     }
 
     @RequestMapping(value = "{id}/add-ingredient", method = RequestMethod.GET)
@@ -49,7 +53,7 @@ public class DishController {
         return "admin/dish/add-ingredient";
     }
 
-    @RequestMapping(value = "{idDish}/add-ingredient/{idIngredient}", method = RequestMethod.POST)
+    @RequestMapping(value = "{idDish}/add-ingredient/{idIngredient}", method = RequestMethod.GET)
     public String addIngredient(@PathVariable("idDish") Long idDish, Model model, @PathVariable Long idIngredient) {
         Dish dish = dishService.findById(idDish);
         Ingredient ingredient = ingredientService.findById(idIngredient);
@@ -58,12 +62,20 @@ public class DishController {
         return "admin/dish/modify";
     }
 
-    @RequestMapping(value = "{idDish}/remove-ingredient/{idIngredient}", method = RequestMethod.POST)
+    @RequestMapping(value = "{idDish}/remove-ingredient/{idIngredient}", method = RequestMethod.GET)
     public String removeIngredient(@PathVariable("idDish") Long idDish, Model model, @PathVariable Long idIngredient) {
         Dish dish = dishService.findById(idDish);
         Ingredient ingredient = ingredientService.findById(idIngredient);
         this.dishService.removeIngredient(dish, ingredient);
         model.addAttribute("dish", dish);
         return "admin/dish/modify";
+    }
+
+    @RequestMapping(value = "{id}/delete", method = RequestMethod.GET)
+    public String deleteDish(Model model, @PathVariable("id") Long id) {
+        Dish dish = dishService.findById(id);
+        model.addAttribute("buffet", dish.getBuffet());
+        dishService.deleteDish(dish);
+        return "admin/buffet/modify";
     }
 }

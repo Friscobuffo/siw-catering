@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.ingredient.list}, css='/css/form-list.css')"></head>
+<body>
+<header th:replace="fragments/base.html :: header(#{header.ingredient.list})"></header>
+<div class="list-element" th:each="ingredient : ${ingredients}">
+    <div class="name" th:text="${ingredient.name}">Mozzarella</div>
+    <a class="button" th:href="@{'/admin/ingredient/' + ${ingredient.id} + '/delete'}">elimina</a>
+    <a class="button" th:href="@{'/admin/ingredient/' + ${ingredient.id} + '/modify'}">modifica</a>
+</div>
+</body>
+</html>

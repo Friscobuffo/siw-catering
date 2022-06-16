@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title=#{title.ingredient.search})"> </head>
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.ingredient.search}, css='/css/form-list.css')"></head>
 <body>
-<header th:replace="fragments/base.html :: intestazione"></header>
-<div>
-    <h4 th:text="#{header.ingredient.search}">Add a dish</h4>
-
-    <form th:action="@{'/admin/ingredient/search'}" method="GET" th:object="${searchIngredient}">
-        <div>
-            <span>Nome dell'ingrediente da cercare:</span>
-            <input type="hidden" th:field="*{idDish}"/>
-            <input type="text" th:field="*{nameToSearch}" placeholder="cerca ingrediente"/>
-            <button type="submit">Cerca</button>
+<header th:replace="fragments/base.html :: header(#{header.ingredient.search})"></header>
+<form class="form align-items-center no-border" th:action="@{'/admin/ingredient/search'}" method="GET" th:object="${searchIngredient}">
+    <input type="hidden" th:field="*{idDish}"/>
+    <div class="search">
+        <input type="text" th:field="*{nameToSearch}" class="search-input" placeholder="Search...">
+        <div class="search-icon">
+            <ion-icon name="search"></ion-icon>
         </div>
-    </form>
-</div>
-<footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+    </div>
+    <button class="button2" type="submit" th:text="#{search}">Cerca</button>
+</form>
 </body>
 </html>

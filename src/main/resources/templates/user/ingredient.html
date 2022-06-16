@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=${ingredient.getName()}, css='/css/form-list.css')"></head>
+<body>
+<header th:replace="fragments/base.html :: header(#{header.ingredient})"></header>
+<div class="flex-container">
+    <div class="form" th:object="${ingredient}">
+        <div class="form-element">
+            <div class="form-span">Nome:</div>
+            <div class="larger" th:text="*{name}"></div>
+        </div>
+        <div class="form-element">
+            <div class="form-span" th:text="#{description}">descrizione:</div>
+            <div class="larger" th:text="*{description}"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=${chef.name} + ' '+ ${chef.surname}, css='/css/form-list.css')"></head>
+<body>
+<header th:replace="fragments/base.html :: header(#{header.chef})"></header>
+<div class="flex-container">
+    <div class="form" th:object="${chef}">
+        <div class="form-element">
+            <div class="form-span" th:text="#{chef.name}">Name:</div>
+            <div th:text="*{name}"></div>
+        </div>
+        <div class="form-element">
+            <div class="form-span" th:text="#{chef.surname}">Surname:</div>
+            <div th:text="*{surname}"></div>
+        </div>
+        <div class="form-element">
+            <div class="form-span" th:text="#{chef.nationality}">Nationality:</div>
+            <div th:text="*{nationality}"></div>
+        </div>
+    </div>
+    <div class="list">
+        <h4 th:text="#{header.buffets}">Buffets</h4>
+        <div class="list-element vertical" th:each="buffet : ${chef.getBuffets()}">
+            <div class="name auto-width" th:text="${buffet.name}">Fish buffet</div>
+            <a class="button" th:href="@{'/buffet/' + ${buffet.id}}" th:text="#{explore}">Explore</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

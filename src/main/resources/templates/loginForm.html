@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="fragments/base.html :: headerfiles(title='Login')"> </head>
-	<body>
-		<header th:replace="fragments/base.html :: intestazione"></header>
-		<div>
-			<h4>Login</h4>
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<link th:href="@{/css/login-register.css}" rel="stylesheet">
+	<title>Login</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="principal-box login-box">
+	<header class="lb-header">
+		<span id="title">Login</span>
+	</header>
+	<div class="google-login">
+		<a href="oauth2/authorization/google">login with google</a>
+	</div>
+	<form th:action="@{/login}" method="POST" class="login">
+		<div class="u-form-group">
+			<input name="username" type="text" required placeholder="Username"/>
 		</div>
-		<form th:action="@{/login}" method="POST">
-			<div>
-				<div>
-					<span>Username:</span>
-					<span><input name="username" type="text" required /></span>
-				</div>
-				<div>
-					<span>Password:</span>
-					<span><input name="password" type="password" required /></span>
-				</div>
-				<div>
-					<span><button type="submit">Login</button></span>
-				</div>
-			</div>
-		</form>
-		<form action="oauth2/authorization/google">
-			<button type="submit"> google </button>
-		</form>
-		<footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
-	</body>
+		<div class="u-form-group">
+			<input name="password" type="password" required placeholder="Password"/>
+		</div>
+		<div class="u-form-group">
+			<button type="submit">Log in</button>
+		</div>
+		<div class="u-form-group">
+			<span class="not-registered">Not registered?</span>
+			<a th:href="@{/user/register}" class="register">Create an account</a>
+		</div>
+	</form>
+</div>
+</body>
 </html>

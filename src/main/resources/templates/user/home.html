@@ -1,50 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="index.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-    </style>
-    <title>Home</title>
-</head>
-
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.home}, css='/css/home.css')"></head>
 <body>
-<div>
-    <nav>
-        <img src="logo3.png" id="logo">
-        <div class='nav-element nav-opening-element'>
-            Naviga
-            <img id="arrow" src="arrow.png">
-            <div class='menu'>
-                <div>I nostri Chef </div>
-                <div>I nostri Buffet</div>
-            </div>
-        </div>
-        <div class='nav-element' id="about">
-            <div>About</div>
-        </div>
-        <div>
-            <button id="login">Login</button>
-        </div>
-    </nav>
-</div>
-<div id="prova">
-    What is Lorem Ipsum?
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-    and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-    Why do we use it?
-    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-    The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-    as opposed to using 'Content here, content here', making it look like readable English.
-    Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
-    and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
-    Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+<header th:replace="fragments/base.html :: header(#{header.user.menu})"></header>
+<div class="cards">
+    <div class="card">
+        <ion-icon class="card-image" name="happy-outline"></ion-icon>
+        <a class="button" th:href="@{/chef/list}" th:text="#{chef.list}">Chef List</a>
+    </div>
+    <div class="card">
+        <ion-icon class="card-image" name="pizza-outline"></ion-icon>
+        <a class="button" th:href="@{/buffet/list}" th:text="#{buffet.list}">Buffet List</a>
+    </div>
 </div>
 </body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.ingredient.edit}, css='/css/form-list.css')"></head>
+<body>
+<header th:replace="fragments/base.html :: header(#{header.ingredient.modify})"></header>
+<div class="flex-container" th:if="${ingredient}">
+    <form class="form" th:action="@{/admin/ingredient/modify/confirm}" method="POST" th:object="${ingredient}">
+        <input type="hidden"  th:field="*{id}"/>
+        <div class="form-element">
+            <span class="form-span" th:text="#{ingredient.name}">Name:</span>
+            <input class="form-input" type="text" th:field="*{name}" placeholder="name" required />
+        </div>
+        <div class="form-element">
+            <span class="form-span" th:text="#{ingredient.description}">Description:</span>
+            <textarea class="form-input higher" type="text" spellcheck="false" th:field="*{description}" placeholder="description" required />
+        </div>
+        <div class="form-element">
+            <span class="form-span" th:text="#{ingredient.origin}">Origin:</span>
+            <input class="form-input" type="text" th:field="*{origin}" placeholder="origin" required />
+        </div>
+        <div>
+            <button class="button2" type="submit" th:text="#{modify.confirm}">Confirm</button>
+        </div>
+    </form>
+</div>
+<div th:unless="${ingredient}">Questo ingrediente non esiste</div>
+</body>
+</html>

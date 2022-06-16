@@ -1,4 +1,4 @@
-package it.uniroma3.siw.catering.controller;
+package it.uniroma3.siw.catering.controller.admin;
 
 import it.uniroma3.siw.catering.model.SearchIngredient;
 import it.uniroma3.siw.catering.model.catering.Ingredient;
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -37,5 +38,31 @@ public class IngredientController {
     public String addIngredient(@ModelAttribute("ingredient") Ingredient ingredient) {
         ingredientService.saveIngredient(ingredient);
         return "admin/home";
+    }
+
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public String getIngredients(Model model) {
+        List<Ingredient> ingredients = ingredientService.findAll();
+        model.addAttribute("ingredients", ingredients);
+        return "admin/ingredient/list";
+    }
+
+    @RequestMapping(value = "{id}/delete", method = RequestMethod.GET)
+    public String deleteIngredient(Model model, @PathVariable("id") Long id) {
+        ingredientService.delete(id);
+        return getIngredients(model);
+    }
+
+    @RequestMapping(value = "{id}/modify", method = RequestMethod.GET)
+    public String modifyIngredient(@PathVariable("id") Long id, Model model) {
+        Ingredient ingredient = ingredientService.findById(id);
+        model.addAttribute("ingredient", ingredient);
+        return "admin/ingredient/modify";
+    }
+
+    @RequestMapping(value = "modify/confirm", method = RequestMethod.POST)
+    public String modifyChef(@ModelAttribute("ingredient") Ingredient ingredient, Model model) {
+        ingredientService.saveIngredient(ingredient);
+        return getIngredients(model);
     }
 }

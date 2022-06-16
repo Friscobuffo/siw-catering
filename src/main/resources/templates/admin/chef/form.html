@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments/base.html :: headerfiles(title=#{title.chef.form})"> </head>
-    <body>
-        <header th:replace="fragments/base.html :: intestazione"></header>
-        <div>
-            <h4 th:text="#{header.chef.add}">Registrazione</h4>
-            <form th:action="@{/admin/chef/add}" method="POST" th:object="${chef}">
-                <div>
-                    <span>Nome:
-                        <input type="text" th:field="*{name}" placeholder="name" required />
-                    </span>
-                </div>
-                <div>
-                    <span>Cognome:
-                        <input type="text" th:field="*{surname}" placeholder="surname" required />
-                    </span>
-                </div>
-                <div>
-                    <span>Nazionalita:
-                        <input type="text" th:field="*{nationality}" placeholder="nationality" required />
-                    </span>
-                </div>
-                <div>
-                    <span><button type="submit">Conferma modifica</button></span>
-                </div>
-            </form>
-        </div>
-        <footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>
-    </body>
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.chef.add}, css='/css/form-list.css')"></head>
+<body>
+<header th:replace="fragments/base.html :: header(#{header.chef.add})"></header>
+<div class="flex-container">
+    <div class="form-wrapper">
+        <form class="form" th:action="@{/admin/chef/add}" method="POST" th:object="${chef}">
+            <div class="form-element">
+                <input class="form-input" type="text" th:field="*{name}" placeholder="name" required />
+            </div>
+            <div class="form-element">
+                <input class="form-input" type="text" th:field="*{surname}" placeholder="surname" required />
+            </div>
+            <div class="form-element">
+                <input class="form-input" type="text" th:field="*{nationality}" placeholder="nationality" required />
+            </div>
+            <div>
+                <button class="button2" type="submit" th:text="#{chef.add}">Add chef</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
 </html>

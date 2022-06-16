@@ -5,13 +5,7 @@
 <header th:replace="fragments/base.html :: header(#{header.chef.list})"></header>
 <div class="list-element horizontal" th:each="chef : ${chefs}">
     <div class="name" th:text="${chef.name} + ' ' + ${chef.surname}">Mario Rossi</div>
-    <div class="flex vertical">
-        <div class="flex horizontal">
-            <a class="button" th:href="@{'/admin/chef/delete/' + ${chef.id}}">elimina</a>
-            <a class="button" th:href="@{'/admin/chef/modify/' + ${chef.id}}">modifica</a>
-        </div>
-        <a class="button" th:href="@{'/admin/chef/' + ${chef.id} + '/add-buffet'}">aggiungi buffet</a>
-    </div>
+    <a class="button" th:href="@{'/chef/' + ${chef.id}}" th:text="#{explore}">Explore</a>
 </div>
 </body>
 </html>

@@ -1,53 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title=#{title.chef.modify})"> </head>
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.buffet.modify}, css='/css/form-list.css')"></head>
 <body>
-<header th:replace="fragments/base.html :: intestazione"></header>
-<div>
-    <h4 th:text="#{header.buffet.modify}">Modify buffet</h4>
-    <div th:if="${buffet}">
-        <form th:action="@{/admin/buffet/modify/confirm}" method="POST" th:object="${buffet}">
-            <div th:if="${#fields.hasGlobalErrors()}">
-                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+<header th:replace="fragments/base.html :: header(#{header.buffet.modify})"></header>
+<div class="flex-container" th:if="${buffet}">
+    <form class="form" th:action="@{/admin/buffet/modify/confirm}" method="POST" th:object="${buffet}">
+        <input type="hidden"  th:field="*{id}"/>
+        <input type="hidden"  th:field="*{chef}"/>
+        <div class="form-element">
+            <div class="form-span">Nome:</div>
+            <input spellcheck="false" class="form-input larger" type="text" th:field="*{name}" placeholder="name" required />
+        </div>
+        <div class="form-element">
+            <div class="form-span">descrizione:</div>
+            <textarea spellcheck="false" class="form-input larger higher" placeholder="Description" th:field="*{description}" required></textarea>
+        </div>
+        <div class="flex horizontal">
+            <a class="button auto-margin" th:href="@{'/admin/buffet/' + ${buffet.id} + '/add-dish'}" th:text="#{buffet.add-dish}">add dish</a>
+            <button class="button2" type="submit" th:text="#{modify.confirm}">Confirm</button>
+        </div>
+    </form>
+    <div class="list">
+        <h4 th:text="#{header.dishes.modify}">Modify dish</h4>
+        <div class="list-element vertical" th:each="dish : ${buffet.getDishes()}">
+            <div class="name auto-width" th:text="${dish.name}">Carbonara</div>
+            <div class="flex horizontal">
+                <a class="button" th:href="@{'/admin/dish/' + ${dish.id} + '/modify'}" th:text="#{modify}">modify</a>
+                <a class="button" th:href="@{'/admin/dish/' + ${dish.id} + '/delete'}" th:text="#{delete}">delete</a>
             </div>
-            <input type="hidden"  th:field="*{id}"/>
-            <input type="hidden"  th:field="*{chef}"/>
-            <div>
-                <span>Nome:</span>
-                <span>
-                    <input type="text" th:field="*{name}" placeholder="name" required />
-                </span>
-                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-            </div>
-            <div>
-                <span>descrizione:
-                    <textarea placeholder="description" rows="5" cols="80" th:field="*{description}" required></textarea>
-                </span>
-                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
-            </div>
-            <div>
-                <span><button type="submit" th:text="#{modify.confirm}">Confirm</button></span>
-            </div>
-
-            <h4 th:text="#{header.dishes.modify}">Modify dish</h4>
-        </form>
-        <form th:action="@{'/admin/buffet/' + ${buffet.id} + '/add-dish'}" method="get">
-            <button type="submit">Aggiungi piatto</button>
-        </form>
-
-        <div>
-            <ul>
-                <li th:each="dish : ${dishes}">
-                    <a
-                            th:href="@{'/admin/dish/modify/' + ${dish.id}}"
-                            th:text="${dish.name}">Carbonara
-                    </a>
-                </li>
-            </ul>
         </div>
     </div>
-    <div th:unless="${buffet}">Questo buffet non esiste</div>
 </div>
-<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+<div th:unless="${buffet}">Questo buffet non esiste</div>
 </body>
 </html>

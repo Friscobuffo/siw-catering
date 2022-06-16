@@ -1,23 +1,22 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="headerfiles(title)">
-	<meta charset="UTF-8" />
-	<link th:href="@{/css/my-style.css}" rel="stylesheet">
+<head th:fragment="headerfiles(title, css)">
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<link th:href="@{/css/base.css}" rel="stylesheet">
+	<link th:href="${css}" rel="stylesheet">
 	<title th:text="${title}"></title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-	<header th:fragment="intestazione">
-		<h1>Siw - Spring Very Simple Demo</h1>
+	<header th:fragment="header(name)" class="nav-bar">
+		<a href="/default"><ion-icon class="home" name="home"></ion-icon></a>
+		<h4 th:text="${name}">Demo name</h4>
+		<a class="logout" th:href="@{/logout}">Logout</a>
+		<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+		<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 	</header>
-
-	<p>Go to the next page to see fragments in action</p>
-	<aside>
-		<div>This is a sidebar</div>
-	</aside>
-	<div class="another">This is another sidebar</div>
-	
-	<footer th:fragment="fondo(home)">
-		<a th:href="@{${home}}">Home</a>
-	</footer>
 </body>
 </html>

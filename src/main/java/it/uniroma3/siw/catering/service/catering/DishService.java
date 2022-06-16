@@ -35,4 +35,9 @@ public class DishService {
         this.dishRepository.save(dish);
         return result;
     }
+
+    @Transactional
+    public void deleteDish(Dish dish) {
+        this.dishRepository.delete(dish);
+    }
 }
