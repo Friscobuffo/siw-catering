@@ -35,9 +35,9 @@ public class IngredientController {
     }
 
     @RequestMapping(value = { "add" }, method = RequestMethod.POST)
-    public String addIngredient(@ModelAttribute("ingredient") Ingredient ingredient) {
+    public String addIngredient(@ModelAttribute("ingredient") Ingredient ingredient, Model model) {
         ingredientService.saveIngredient(ingredient);
-        return "admin/home";
+        return getIngredients(model);
     }
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
