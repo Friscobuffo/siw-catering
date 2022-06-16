@@ -4,14 +4,13 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	<link href="css/index.css" rel="stylesheet">
+	<link href="css/base.css" rel="stylesheet">
 	<title>Catering</title>
 </head>
 <body>
 <div class="container">
 	<div class="element">
-		<form th:action="@{/default}" method="get">
-			<button type="submit" th:text="#{index.discover}">Discover out catering</button>
-		</form>
+		<a class="discover" th:href="@{/default}">Discover</a>
 	</div>
 </div>
 
