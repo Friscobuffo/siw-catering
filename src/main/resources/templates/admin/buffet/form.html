@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title=#{title.chef.add}, css='/css/form-list.css')"></head>
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.buffet.add}, css='/css/form-list.css')"></head>
 <body>
 <header th:replace="fragments/base.html :: header(#{header.buffet.add})"></header>
 <div class="flex-container">
     <form class="form" th:action="@{/admin/buffet/add}" method="POST" th:object="${buffet}">
         <div class="flex">
-            <div>
-                <input type="hidden" th:field="*{id}"/>
-                <input type="hidden" th:field="*{chef}"/>
-                <div class="form-element">
-                    <input class="form-input" type="text" th:field="*{name}" spellcheck="false" placeholder="Name" required />
-                </div>
-                <div>
-                    <button class="button2" type="submit">Aggiungi</button>
-                </div>
-            </div>
+            <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{chef}"/>
             <div class="form-element">
-                <textarea class="form-textarea" placeholder="Description" rows="3" spellcheck="false" th:field="*{description}" required></textarea>
+                <input class="form-input" type="text" th:field="*{name}" spellcheck="false" placeholder="Name" required />
             </div>
+            <div>
+                <button class="button2 auto-margin" type="submit">Aggiungi</button>
+            </div>
+        </div>
+        <div class="form-element">
+            <textarea class="form-input larger higher" placeholder="Description" spellcheck="false" th:field="*{description}" required></textarea>
         </div>
     </form>
 </div>

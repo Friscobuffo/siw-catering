@@ -6,20 +6,19 @@
 <div class="flex-container">
     <form class="form" th:action="@{/admin/dish/add}" method="POST" th:object="${dish}">
         <div class="flex">
-            <div>
-                <input type="hidden" th:field="*{id}"/>
-                <input type="hidden" th:field="*{buffet}"/>
-                <div class="form-element">
-                    <input class="form-input" type="text" th:field="*{name}" placeholder="name" required />
-                </div>
-                <div>
-                    <button class="button2" type="submit">Conferma aggiunta</button>
-                </div>
-            </div>
+            <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{buffet}"/>
             <div class="form-element">
-                <textarea class="form-textarea" placeholder="description" rows="3" th:field="*{description}" required></textarea>
+                <input class="form-input" type="text" th:field="*{name}" placeholder="name" required />
+            </div>
+            <div>
+                <button class="button2 auto-margin" type="submit">Conferma</button>
             </div>
         </div>
+        <div class="form-element">
+            <textarea class="form-input larger higher" placeholder="description" th:field="*{description}" required></textarea>
+        </div>
+
     </form>
 </div>
 </body>
