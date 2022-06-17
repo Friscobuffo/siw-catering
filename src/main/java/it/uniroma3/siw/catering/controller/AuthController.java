@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Iterator;
+
 @Controller
 public class AuthController {
     @Autowired private CredentialsService credentialsService;
@@ -44,26 +46,30 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/default", method = RequestMethod.GET)
-    public String defaultAfterLogin() {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-        if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/home";
+    public String defaultAfterLogin(@AuthenticationPrincipal OidcUser principal) {
+        try {
+            defaultAfterLoginGoogle(principal);
+        }
+        catch (Exception e) {
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+            if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+                return "admin/home";
+            }
         }
         return "user/home";
     }
 
-    @RequestMapping(value = "/defaultGoogle", method = RequestMethod.GET)
-    public String defaultAfterLoginGoogle(Model model, @AuthenticationPrincipal OidcUser principal) {
+    private
+    String defaultAfterLoginGoogle(OidcUser principal) {
         GoogleUser googleUser = this.googleUserService.getGoogleUser(principal.getEmail());
         if (googleUser == null) {
-            saveGoogleUser(model, principal);
+            saveGoogleUser(principal);
         }
         return "user/home";
     }
 
-    @RequestMapping(value = "/saveGoogleUser", method = RequestMethod.POST)
-    public String saveGoogleUser(Model model, OidcUser principal) {
+    private String saveGoogleUser(OidcUser principal) {
         GoogleUser googleUser = this.googleUserService.getGoogleUser(principal.getEmail());
         if (googleUser == null) {
             googleUser = new GoogleUser();

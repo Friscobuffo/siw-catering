@@ -45,6 +45,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/index")
                 .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .clearAuthentication(true).permitAll();
     }
 

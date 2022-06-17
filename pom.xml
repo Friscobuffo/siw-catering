@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.progetto</groupId>
     <artifactId>servizio_cathering</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-FINAL</version>
     <name>servizio_cathering</name>
     <description>servizio_cathering</description>
     <properties>
