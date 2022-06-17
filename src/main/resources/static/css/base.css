@@ -1,12 +1,12 @@
 html {
-    font-size: 16px;
+    font-size: 30px;
     font-family: 'Montserrat', sans-serif;
     background: #E4EBF5;
     color: #9baacf;
 }
 
 .nav-bar {
-    border-bottom: 1px solid #6d5dfc;
+    border-bottom: 0.1rem solid #6d5dfc;
     padding-bottom: 0.2rem;
     height: 2rem;
     top: 0;
@@ -98,6 +98,7 @@ html {
 
 /* FORM INPUT */
 .form-input, .form-textarea {
+    font-size: inherit;
     border: none;
     border-radius: .5rem;
     padding-left: .5rem;

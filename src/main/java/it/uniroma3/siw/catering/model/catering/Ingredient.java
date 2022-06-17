@@ -18,6 +18,6 @@ public class Ingredient {
 
     private String origin;
 
-    @ManyToMany(mappedBy = "ingredients", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "ingredients")
     private List<Dish> dishes;
 }

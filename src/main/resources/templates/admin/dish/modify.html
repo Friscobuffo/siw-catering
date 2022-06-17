@@ -27,8 +27,6 @@
         <div class="list-element vertical" th:each="ingredient : ${dish.getIngredients()}">
             <div class="name auto-width" th:text="${ingredient.name}">Pane</div>
             <div class="flex horizontal">
-                <a class="button" th:href="@{'/admin/ingredient/' + ${ingredient.id} + '/modify'}" th:text="#{modify}">modify</a>
-                <a class="button" th:href="@{'/admin/ingredient/' + ${ingredient.id} + '/delete'}" th:text="#{delete}">delete</a>
                 <a class="button" th:href="@{'/admin/dish/' + ${dish.id} + '/remove-ingredient/' + ${ingredient.id}}" th:text="#{remove}">remove</a>
             </div>
         </div>

@@ -54,7 +54,7 @@
 }
 
 @media screen and (max-width: 34rem) {
-    html { font-size: 18px; }
+    html { font-size: 20px; }
 
     .flex-container {
         flex-direction: column;

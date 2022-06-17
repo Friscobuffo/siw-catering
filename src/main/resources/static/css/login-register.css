@@ -1,5 +1,5 @@
 html{
-    font-size: 12px;
+    font-size: 30px;
     background-color: #1cbb9b;
     font-family: 'Montserrat', sans-serif;
 }
@@ -109,3 +109,5 @@ html{
     font-size: 0.75rem;
     color: red;
 }
+
+@media screen and (max-width: 34rem) { html { font-size: 20px; } }
